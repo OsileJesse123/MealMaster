@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MealMaster</string>
+    <string name="grant_permission">Great Permission</string>
+    <string name="ok">Ok</string>
+    <string name="failed_to_perform_identification">Failed to perform identification</string>
+    <string name="cannot_cook_meal">I don\'t know much about the meal</string>
+    <string name="could_not_identify_a_meal">I couldn\'t identify a meal</string>
+    <string name="recipe_image">recipe image</string>
+    <string name="the_meal_here_is">The Meal Here is %s</string>
+    <string name="take_a_picture">Take a Picture</string>
+    <string name="tell_me_more_about_it">Tell me more about it</string>
+    <string name="no_ingredients">No Ingredients</string>
+    <string name="no_steps">No Steps</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="steps">Steps</string>
+    <string name="nothing_here">Nothing Here</string>
+</resources>
