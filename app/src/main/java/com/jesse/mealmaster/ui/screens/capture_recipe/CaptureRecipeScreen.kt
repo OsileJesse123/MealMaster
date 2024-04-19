@@ -56,7 +56,11 @@ fun CaptureRecipeRoute(
         onCaptureRecipe = {cameraLauncher.launch()},
         onNavigateToRecipeDetailsScreen = onNavigateToRecipeDetailsScreen,
         uiState = captureRecipeUiState,
-        onUpdateRecipe = {sharedViewModel.updateRecipe(it)}
+        onUpdateRecipe = {
+            recipe ->
+            // TODO 008: Initiate Update recipe
+            sharedViewModel.updateRecipe(recipe)
+        }
     )
     captureRecipeUiState.errorMessage?.let {
             errorMessage ->
@@ -85,10 +89,13 @@ fun CaptureRecipeScreen(
         // So long as the recipe object is not null and the recipe name is not empty, let this text
         // be visible
         AnimatedVisibility(visible = uiState.recipe != null && uiState.recipe.name != "No Food") {
-            Text(
-                text = stringResource(id = R.string.the_meal_here_is, uiState.recipe!!.name),
-                style = MaterialTheme.typography.titleMedium
+            uiState.recipe?.let {
+                recipe ->
+                Text(
+                    text = stringResource(id = R.string.the_meal_here_is, recipe.name),
+                    style = MaterialTheme.typography.titleMedium
                 )
+            }
         }
         Spacer(modifier = Modifier.height(20.dp))
         AnimatedVisibility(visible = uiState.bitmap != null,
@@ -116,12 +123,12 @@ fun CaptureRecipeScreen(
         AnimatedVisibility(visible = uiState.successful) {
             MealMasterButton(
                 onClick = {
-                    // TODO 008: Update recipe and navigate to details screen
-                    uiState.recipe?.let {
-                        recipe ->
-                        onUpdateRecipe(recipe)
-                        onNavigateToRecipeDetailsScreen()
-                    }
+                    // TODO 007: Update recipe and navigate to details screen
+                          uiState.recipe?.let {
+                              recipe ->
+                              onUpdateRecipe(recipe)
+                              onNavigateToRecipeDetailsScreen()
+                          }
                 },
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResource(id = R.string.tell_me_more_about_it)

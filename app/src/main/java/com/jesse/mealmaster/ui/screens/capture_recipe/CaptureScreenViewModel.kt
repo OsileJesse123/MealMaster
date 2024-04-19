@@ -23,41 +23,53 @@ class CaptureScreenViewModel @Inject constructor(
     )
     val captureScreenUiState get() = _captureScreenUiState.asStateFlow()
 
-    // TODO 006: implement the identifyRecipe function
+    // TODO 006: implement the identifyRecipe function (Run)
     fun identifyRecipe(recipeImage: Bitmap){
         viewModelScope.launch {
-            // Update the image in the UI and set UI state to loading
+            // What's the first step here?
             _captureScreenUiState.update {
                 captureScreenUiState ->
-                captureScreenUiState.copy(bitmap = recipeImage, isLoading = true)
+                captureScreenUiState.copy(isLoading = true, bitmap = recipeImage, successful = false, recipe = null)
             }
+
             // Try to get recipe from image
             recipeRepository.getRecipe(recipeImage)
                 .onSuccess {
                     recipe ->
                     _captureScreenUiState.update {
-                            captureScreenUiState ->
-                        captureScreenUiState.copy(
+                        captureRecipeUiState ->
+                        captureRecipeUiState.copy(
                             isLoading = false,
                             recipe = recipe,
-                            successful = when(recipe.getStatus()){
-                                RecipeStatus.RECIPE_IDENTIFIED -> true
-                                else -> false
-                            },
-                            errorMessage = when(recipe.getStatus()){
-                                RecipeStatus.RECIPE_IDENTIFIED_NO_STEPS_OR_INGREDIENTS -> R.string.cannot_cook_meal
-                                RecipeStatus.RECIPE_NOT_IDENTIFIED -> R.string.could_not_identify_a_meal
-                                else -> null
-                            }
+                            successful = isSuccessful(recipe.getStatus()),
+                            errorMessage = determineErrorMessage(recipe.getStatus())
                         )
                     }
                 }
                 .onFailure {
+                    exception ->
                     _captureScreenUiState.update {
-                            captureScreenUiState ->
-                        captureScreenUiState.copy(isLoading = false, errorMessage = R.string.failed_to_perform_identification)
+                        captureRecipeUiState ->
+                        captureRecipeUiState.copy(
+                            errorMessage = R.string.failed_to_perform_identification, isLoading = false
+                        )
                     }
                 }
+        }
+    }
+
+    private fun isSuccessful(recipeStatus: RecipeStatus): Boolean{
+        return when(recipeStatus){
+            RecipeStatus.RECIPE_IDENTIFIED -> true
+            else -> false
+        }
+    }
+
+    private fun determineErrorMessage(recipeStatus: RecipeStatus): Int?{
+        return when(recipeStatus){
+            RecipeStatus.RECIPE_IDENTIFIED_NO_STEPS_OR_INGREDIENTS -> R.string.cannot_cook_meal
+            RecipeStatus.RECIPE_NOT_IDENTIFIED -> R.string.could_not_identify_a_meal
+            else -> null
         }
     }
 

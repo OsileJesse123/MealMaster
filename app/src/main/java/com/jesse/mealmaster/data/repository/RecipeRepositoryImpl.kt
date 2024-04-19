@@ -22,17 +22,15 @@ class RecipeRepositoryImpl @Inject constructor(
     override suspend fun getRecipe(recipeImage: Bitmap): Result<Recipe> {
         return withContext(ioDispatcher){
             try {
-                // Put content together
                 val inputContent = content {
                     image(recipeImage)
                     text(prompt)
                 }
-                // Generate content using AI model
                 val response = generativeModel.generateContent(inputContent)
                 Timber.e("Response: $response")
                 Result.success(Recipe.toRecipe(response.text))
-            }
-            catch (e: Exception){
+            } catch (e: Exception){
+                Timber.e("Exception: $e")
                 Result.failure(e)
             }
         }

@@ -23,7 +23,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-
+        // TODO 001: Uncomment code
         // Load the values from .properties file
         val keystoreFile = project.rootProject.file("local.properties")
         val properties = Properties()
@@ -96,7 +96,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     // TODO 002: Add gemini dependency
-    // Gemini
     implementation("com.google.ai.client.generativeai:generativeai:0.3.0")
 
     // Gson

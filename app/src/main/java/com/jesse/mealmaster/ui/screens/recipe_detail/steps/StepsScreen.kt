@@ -55,20 +55,21 @@ fun StepsScreen(
         ){
             items(steps){
                 step ->
-                Text(
-                    text = "${steps.indexOf(step) + 1}. $step",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(
-                            color = MaterialTheme.colorScheme.primary,
-                            shape = MaterialTheme.shapes.small
-                        )
-                        .padding(vertical = 15.dp, horizontal = 10.dp),
+                if (step != "null"){
+                    Text(
+                        text = "${steps.indexOf(step) + 1}. $step",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                color = MaterialTheme.colorScheme.primary,
+                                shape = MaterialTheme.shapes.small
+                            )
+                            .padding(vertical = 15.dp, horizontal = 10.dp),
 
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Spacer(modifier = Modifier.height(height = 10.dp))
-
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                    Spacer(modifier = Modifier.height(height = 10.dp))
+                }
             }
         }
     }
