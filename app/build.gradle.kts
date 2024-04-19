@@ -96,6 +96,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     // TODO 002: Add gemini dependency
+    //implementation("com.google.ai.client.generativeai:generativeai:0.3.0")
 
     // Gson
     implementation("com.google.code.gson:gson:2.10.1")

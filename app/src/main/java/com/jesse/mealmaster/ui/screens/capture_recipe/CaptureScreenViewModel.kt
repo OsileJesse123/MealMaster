@@ -54,4 +54,33 @@ class CaptureScreenViewModel @Inject constructor(
                 captureScreenUiState.copy(errorMessage = null)
         }
     }
+
+    // First step
+//    _captureScreenUiState.update {
+//        captureScreenUiState ->
+//        captureScreenUiState.copy(
+//            isLoading = true, bitmap = recipeImage
+//        )
+//    }
+
+    // On Success
+//    _captureScreenUiState.update {
+//        captureScreenUiState ->
+//        captureScreenUiState.copy(
+//            isLoading = false,
+//            recipe = recipe,
+//            successful = isSuccessful(recipe.getStatus()),
+//            errorMessage = determineErrorMessage(recipe.getStatus())
+//        )
+//    }
+
+    // On failure
+//    _captureScreenUiState.update {
+//        captureScreenUiState ->
+//        captureScreenUiState.copy(
+//            isLoading = false,
+//            errorMessage = R.string.failed_to_perform_identification
+//        )
+//    }
+
 }
