@@ -16,8 +16,8 @@ object AIModelModule {
     // TODO 003: Define how to create Generative AI Model
     @Provides
     @Singleton
-    fun providesAIModel() = GenerativeModel(
-        modelName,
-        BuildConfig.API_KEY
+    fun provideGenerativeAIModel() = GenerativeModel(
+        modelName = modelName,
+        apiKey = BuildConfig.API_KEY
     )
 }

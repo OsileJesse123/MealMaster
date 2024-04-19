@@ -8,11 +8,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SharedViewModel @Inject constructor(): ViewModel(){
-    // TODO 006: Add recipe variable
+
     var recipe = mutableStateOf<Recipe?>(null)
         private set
 
-    // TODO 007: Update recipe
     fun updateRecipe(recipeValue: Recipe){
         recipe.value = recipeValue
     }
