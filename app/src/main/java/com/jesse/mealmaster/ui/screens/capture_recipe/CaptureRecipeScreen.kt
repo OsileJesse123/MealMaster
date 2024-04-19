@@ -59,7 +59,7 @@ fun CaptureRecipeRoute(
         onUpdateRecipe = {
             recipe ->
             // TODO 008: Initiate Update recipe
-            sharedViewModel.updateRecipe(recipe)
+
         }
     )
     captureRecipeUiState.errorMessage?.let {
@@ -124,11 +124,7 @@ fun CaptureRecipeScreen(
             MealMasterButton(
                 onClick = {
                     // TODO 007: Update recipe and navigate to details screen
-                          uiState.recipe?.let {
-                              recipe ->
-                              onUpdateRecipe(recipe)
-                              onNavigateToRecipeDetailsScreen()
-                          }
+
                 },
                 modifier = Modifier.fillMaxWidth(),
                 text = stringResource(id = R.string.tell_me_more_about_it)

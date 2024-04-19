@@ -27,34 +27,9 @@ class CaptureScreenViewModel @Inject constructor(
     fun identifyRecipe(recipeImage: Bitmap){
         viewModelScope.launch {
             // What's the first step here?
-            _captureScreenUiState.update {
-                captureScreenUiState ->
-                captureScreenUiState.copy(isLoading = true, bitmap = recipeImage, successful = false, recipe = null)
-            }
 
             // Try to get recipe from image
-            recipeRepository.getRecipe(recipeImage)
-                .onSuccess {
-                    recipe ->
-                    _captureScreenUiState.update {
-                        captureRecipeUiState ->
-                        captureRecipeUiState.copy(
-                            isLoading = false,
-                            recipe = recipe,
-                            successful = isSuccessful(recipe.getStatus()),
-                            errorMessage = determineErrorMessage(recipe.getStatus())
-                        )
-                    }
-                }
-                .onFailure {
-                    exception ->
-                    _captureScreenUiState.update {
-                        captureRecipeUiState ->
-                        captureRecipeUiState.copy(
-                            errorMessage = R.string.failed_to_perform_identification, isLoading = false
-                        )
-                    }
-                }
+
         }
     }
 

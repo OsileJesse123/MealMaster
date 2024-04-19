@@ -24,19 +24,19 @@ android {
             useSupportLibrary = true
         }
         // TODO 001: Uncomment code
-        // Load the values from .properties file
-        val keystoreFile = project.rootProject.file("local.properties")
-        val properties = Properties()
-        properties.load(keystoreFile.inputStream())
-
-        // Return empty key in case something goes wrong
-        val apiKey = properties.getProperty("API_KEY") ?: ""
-
-        buildConfigField(
-            type = "String",
-            name = "API_KEY",
-            value = apiKey
-        )
+//        // Load the values from .properties file
+//        val keystoreFile = project.rootProject.file("local.properties")
+//        val properties = Properties()
+//        properties.load(keystoreFile.inputStream())
+//
+//        // Return empty key in case something goes wrong
+//        val apiKey = properties.getProperty("API_KEY") ?: ""
+//
+//        buildConfigField(
+//            type = "String",
+//            name = "API_KEY",
+//            value = apiKey
+//        )
     }
 
     buildTypes {
@@ -96,7 +96,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     // TODO 002: Add gemini dependency
-    implementation("com.google.ai.client.generativeai:generativeai:0.3.0")
 
     // Gson
     implementation("com.google.code.gson:gson:2.10.1")
