@@ -109,7 +109,7 @@ fun DetailScreen(
             }
             Text(
                 text = recipe.name,
-                fontSize = 26.sp,
+                fontSize = 20.sp,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.labelLarge.copy(
