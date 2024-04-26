@@ -61,6 +61,8 @@ fun CaptureRecipeRoute(
             // TODO 008: Initiate Update recipe
 
         }
+        // 008: Code
+        // sharedViewModel.updateRecipe(recipe)
     )
     captureRecipeUiState.errorMessage?.let {
             errorMessage ->
@@ -131,6 +133,13 @@ fun CaptureRecipeScreen(
             )
         }
     }
+
+    // 007: Code
+//    uiState.recipe?.let {
+//            recipe ->
+//        onUpdateRecipe(recipe)
+//        onNavigateToRecipeDetailsScreen()
+//    }
 
 }
 

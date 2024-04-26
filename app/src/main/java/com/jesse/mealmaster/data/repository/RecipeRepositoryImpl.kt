@@ -13,3 +13,21 @@ class RecipeRepositoryImpl @Inject constructor(
 
     // TODO 005: implement getRecipe function
 }
+
+// 005: Code
+//override suspend fun getRecipe(recipeImage: Bitmap): Result<Recipe> {
+//    return withContext(ioDispatcher){
+//        try {
+//            val inputContent = content {
+//                image(recipeImage)
+//                text(prompt)
+//            }
+//            val response = generativeModel.generateContent(inputContent)
+//            Timber.e("Response: $response")
+//            Result.success(Recipe.toRecipe(response.text))
+//        } catch (e: Exception){
+//            Timber.e("Exception: $e")
+//            Result.failure(e)
+//        }
+//    }
+//}
